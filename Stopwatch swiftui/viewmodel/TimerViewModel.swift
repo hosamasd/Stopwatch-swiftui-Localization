@@ -9,11 +9,14 @@ import SwiftUI
 
 class TimerViewModel: ObservableObject {
     
+    @Published var isStop = false
+    @Published var isReset = true
+
     @Published var isBegin = false
     @Published var startText = "Start"
     @Published var startColor = Color.green
     @Published var timer = Timer()
-    @Published var labText = "Lap"
+    @Published var labText:String = "Lap"
     @Published var labColor = Color.black
     @Published var labEnabled = false
     
@@ -63,8 +66,10 @@ class TimerViewModel: ObservableObject {
     func handleStart()  {
         if startText == "Stop" {
             stopButtons()
+            isStop=false
         }else {
             startButtons()
+            isStop=true
         }
         //        upadteLabels()
     }
@@ -74,7 +79,7 @@ class TimerViewModel: ObservableObject {
         startText="Start"
         startColor = .green
         labText="Reset"
-        
+        isReset=false
     }
     
     fileprivate func startButtons()  {
@@ -83,6 +88,7 @@ class TimerViewModel: ObservableObject {
         startText="Stop"
         startColor = .red
         labText="Lap"
+        isReset=true
         labEnabled = true
     }
     //

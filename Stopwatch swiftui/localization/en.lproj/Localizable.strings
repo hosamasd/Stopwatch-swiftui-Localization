@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  Stopwatch swiftui
+
+  Created by hosam on 3/11/21.
+  
+*/
+
+"lang" = "en";
+"English" = "عربي";
+"Built By \n HOSAM" = "Built By \n HOSAM";
+
+"GitHub" = "GitHub";
+"Facebook" = "Facebook";
+"AppStore" = "AppStore";
+"LinkedIn" = "LinkedIn";
+
+"About" = "About";
+
+"Clear " = "Clear ";
+"Stopwatch" = "Stopwatch";
+
+"Stop" = "Stop";
+"Start" = "Start";
+"Lap" = "Lap";
+"Reset" = "Reset";

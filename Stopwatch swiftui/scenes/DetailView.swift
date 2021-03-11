@@ -6,23 +6,36 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct DetailView: View {
     
     
     @EnvironmentObject var vm : MainViewModel
+    var links = ["https://apps.apple.com/us/developer/hosam-mohamed/id1482369833",
+                 "https://github.com/hosamasd?tab=repositories", "https://www.facebook.com/hosammohamedasd", "https://www.linkedin.com/in/hosam-mohamed-425a83119/"]
+    @State var showSafari = false
+    // initial URL string
+    @State var urlString = "https://github.com/hosamasd?tab=repositories"
+    @Binding var show:Bool
     
     var body: some View {
         
         VStack {
             
             HStack{
-                Image(systemName: "arrowshape.turn.up.backward")
-                    .font(.largeTitle)
+                Button(action: {
+                    withAnimation{
+                        self.show.toggle()
+                    }
+                }, label: {
+                    Image(systemName: "arrowshape.turn.up.backward")
+                        .font(.largeTitle)
+                })
                 
                 Spacer()
             }
-            .padding()
+            .padding(.horizontal)
             .background(Color("Color"))
             
             Image("pict")
@@ -41,7 +54,11 @@ struct DetailView: View {
                 SectionHeaderView()
                 
                 Button(action: {
-                    
+                    withAnimation{
+                        urlString=links[0]
+                        showSafari.toggle()
+                        
+                    }
                 }, label: {
                     HStack{
                         Text("AppStore")
@@ -59,7 +76,11 @@ struct DetailView: View {
                 
                 
                 Button(action: {
-                    
+                    withAnimation{
+                        urlString=links[1]
+                        showSafari.toggle()
+                        
+                    }
                 }, label: {
                     HStack{
                         Text("GitHub")
@@ -77,7 +98,11 @@ struct DetailView: View {
                 
                 
                 Button(action: {
-                    
+                    withAnimation{
+                        urlString=links[2]
+                        showSafari.toggle()
+                        
+                    }
                 }, label: {
                     HStack{
                         Text("Facebook")
@@ -94,7 +119,11 @@ struct DetailView: View {
                     .frame(width:UIScreen.main.bounds.width-64)
                 
                 Button(action: {
-                    
+                    withAnimation{
+                        self.urlString=links[3]
+                        showSafari.toggle()
+                        
+                    }
                 }, label: {
                     HStack{
                         Text("LinkedIn")
@@ -130,13 +159,20 @@ struct DetailView: View {
             }
             
         }
-        .background(Color.white)
+        .background(Color("Color").edgesIgnoringSafeArea(.bottom))
+        
+        // summon the Safari sheet
+        .sheet(isPresented: $showSafari) {
+            SafariView(url:URL(string: self.urlString)!)
+        }
         
     }
-}
-
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView()
+    
+    func loadFirst(index:Int)  {
+        if  let url = URL(string: links[index]){
+            let safari = SFSafariViewController(url: url)
+            
+        }
+        
     }
 }

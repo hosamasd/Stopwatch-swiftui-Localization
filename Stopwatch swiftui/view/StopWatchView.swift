@@ -30,12 +30,17 @@ struct StopWatchView: View {
                         vm.handleLab()
                     }
                 }, label: {
-                    Text(vm.labText)
+                    Text(
+                        vm.isReset ? "Lap" : "Reset"
+//                        vm.labText
+                    
+                    )
                         .foregroundColor(vm.labColor)
                         .font(.system(size: 18))
                         
                 })
                 .modifier(BTNModifier())
+                .disabled(!vm.labEnabled)
                 
                 
                 Button(action: {
@@ -43,7 +48,10 @@ struct StopWatchView: View {
                         vm.handleStart()
                     }
                 }, label: {
-                    Text(vm.startText)
+                    Text(
+                        vm.isStop ? "Stop" : "Start"
+//                        vm.startText
+                    )
                         .foregroundColor(vm.startColor)
                         .font(.system(size: 18))
                         

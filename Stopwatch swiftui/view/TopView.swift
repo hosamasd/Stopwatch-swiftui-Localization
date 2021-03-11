@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopView: View {
     @EnvironmentObject var vm : MainViewModel
-    
+    @Binding var show:Bool
     var body: some View {
         HStack {
             Spacer()
@@ -28,6 +28,7 @@ struct TopView: View {
             
             Button(action: {
                 withAnimation{
+                    self.show.toggle()
 //                    self.vm.ss.toggle()
                 }
             }, label: {
@@ -44,10 +45,4 @@ struct TopView: View {
         .background(Color("Color"))
     }
     
-}
-
-struct TopView_Previews: PreviewProvider {
-    static var previews: some View {
-        TopView()
-    }
 }
